@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,22 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $price = 0.0;
-    return view('index', [
-        'title' => 'Home', 'icon' => 'assets/farm.png'
-    ], compact('price'));
-});
-
-Route::get('/products', function () {
-    $price = 0.0;
-    return view('products', [
-        'title' => 'Products', 'icon' => 'assets/farm.png'
-    ], compact('price'));
-});
-
-Route::get('/about-us', function () {
-    return view('about-us', [
-        'title' => 'About Us', 'icon' => 'assets/farm.png'
-    ]);
-});
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'products']);
+Route::get('/about-us', [ProductController::class, 'about']);
